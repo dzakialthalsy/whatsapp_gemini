@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'updates_provider.dart';
 import 'updates_screen.dart';
+import 'communities_provider.dart';
+import 'communities_screen.dart';
 
 void main() {
   runApp(
     MultiProvider(
-      providers: [ChangeNotifierProvider(create: (_) => UpdatesProvider())],
+      providers: [
+        ChangeNotifierProvider(create: (_) => UpdatesProvider()),
+        ChangeNotifierProvider(create: (_) => CommunitiesProvider()),
+      ],
       child: const WhatsAppClone(),
     ),
   );
@@ -60,8 +65,10 @@ class _MainScreenState extends State<MainScreen> {
   final List<Widget> _pages = [
     const ChatListScreen(),
     const UpdatesScreen(), // Masukkan layar yang baru kita buat
-    const Center(child: Text('Communities Screen')),
-    const Center(child: Text('Calls Screen')),
+    const CommunitiesScreen(),
+    const Center(
+      child: Text('Calls Screen', style: TextStyle(color: Colors.white)),
+    ),
   ];
 
   @override
