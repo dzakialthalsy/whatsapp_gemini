@@ -31,7 +31,7 @@ class CallsProvider extends ChangeNotifier {
       isIncoming: false, // Panggilan keluar (panah hijau ke atas)
     ),
     RecentCallModel(
-      name: 'Mami',
+      name: 'Abdul',
       time: 'Yesterday, 21:27',
       isMissed: true, // Panggilan tak terjawab (panah merah)
       isIncoming: true,
