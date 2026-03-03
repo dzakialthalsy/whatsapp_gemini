@@ -20,7 +20,6 @@ class ChatDetailScreen extends StatelessWidget {
 
   const ChatDetailScreen({super.key, required this.chatName});
 
-  // Data fiktif dengan alur percakapan yang ritmenya mirip dengan screenshot
   List<ChatMessage> get _messages => [
     ChatMessage(
       text: 'Belum ngerjain tugas yang part 2 nih',
@@ -80,25 +79,35 @@ class ChatDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(
-        0xFF0B141B,
-      ), // Warna background chat WA (tanpa wallpaper)
+      backgroundColor: const Color(0xFF0B141B), // Warna dasar
       appBar: _buildAppBar(context),
-      body: Column(
-        children: [
-          // List Gelembung Chat
-          Expanded(
-            child: ListView.builder(
-              padding: const EdgeInsets.symmetric(vertical: 16),
-              itemCount: _messages.length,
-              itemBuilder: (context, index) {
-                return _buildChatBubble(_messages[index]);
-              },
+      // 👇 PERUBAHAN ADA DI BAGIAN BODY INI 👇
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            // Link ini mengarah ke pattern doodle khas WA
+            image: NetworkImage(
+              'https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png',
             ),
+            fit: BoxFit.cover,
+            // Membuat opacity gambar menjadi sangat tipis (0.08) agar menyatu dengan warna gelap
+            opacity: 0.08,
           ),
-          // Area Ketik Pesan (Bottom Input)
-          _buildMessageInput(),
-        ],
+        ),
+        child: Column(
+          children: [
+            Expanded(
+              child: ListView.builder(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                itemCount: _messages.length,
+                itemBuilder: (context, index) {
+                  return _buildChatBubble(_messages[index]);
+                },
+              ),
+            ),
+            _buildMessageInput(),
+          ],
+        ),
       ),
     );
   }
@@ -107,7 +116,7 @@ class ChatDetailScreen extends StatelessWidget {
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return AppBar(
       titleSpacing: 0,
-      leadingWidth: 70, // Lebar untuk icon back + foto profil
+      leadingWidth: 70,
       leading: InkWell(
         onTap: () => Navigator.pop(context),
         child: const Row(
@@ -151,9 +160,7 @@ class ChatDetailScreen extends StatelessWidget {
     return Align(
       alignment: message.isMe ? Alignment.centerRight : Alignment.centerLeft,
       child: ConstrainedBox(
-        constraints: const BoxConstraints(
-          maxWidth: 300, // Lebar maksimal gelembung chat
-        ),
+        constraints: const BoxConstraints(maxWidth: 300),
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 2),
           padding: const EdgeInsets.only(
@@ -165,18 +172,16 @@ class ChatDetailScreen extends StatelessWidget {
           decoration: BoxDecoration(
             color: message.isMe
                 ? const Color(0xFF005C4B)
-                : const Color(
-                    0xFF202C33,
-                  ), // Hijau untuk pengirim, abu-abu untuk penerima
+                : const Color(0xFF202C33),
             borderRadius: BorderRadius.only(
               topLeft: const Radius.circular(12),
               topRight: const Radius.circular(12),
               bottomLeft: message.isMe
                   ? const Radius.circular(12)
-                  : const Radius.circular(0), // Ekor chat kiri
+                  : const Radius.circular(0),
               bottomRight: message.isMe
                   ? const Radius.circular(0)
-                  : const Radius.circular(12), // Ekor chat kanan
+                  : const Radius.circular(12),
             ),
           ),
           child: Wrap(
@@ -184,7 +189,7 @@ class ChatDetailScreen extends StatelessWidget {
             crossAxisAlignment: WrapCrossAlignment.end,
             children: [
               Text(
-                "${message.text}  ", // Spasi ekstra agar teks tidak menabrak jam
+                "${message.text}  ",
                 style: const TextStyle(color: Colors.white, fontSize: 15.5),
               ),
               Row(
@@ -238,7 +243,7 @@ class ChatDetailScreen extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.only(bottom: 2),
                       child: TextField(
-                        maxLines: null, // Agar textfield bisa membesar ke bawah
+                        maxLines: null,
                         keyboardType: TextInputType.multiline,
                         decoration: InputDecoration(
                           hintText: 'Message',
