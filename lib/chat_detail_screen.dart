@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-// --- MODEL DATA PESAN ---
 class ChatMessage {
   final String text;
   final bool isMe;
@@ -79,18 +78,15 @@ class ChatDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0B141B), // Warna dasar
+      backgroundColor: const Color(0xFF0B141B),
       appBar: _buildAppBar(context),
-      // 👇 PERUBAHAN ADA DI BAGIAN BODY INI 👇
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            // Link ini mengarah ke pattern doodle khas WA
             image: NetworkImage(
               'https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png',
             ),
             fit: BoxFit.cover,
-            // Membuat opacity gambar menjadi sangat tipis (0.08) agar menyatu dengan warna gelap
             opacity: 0.08,
           ),
         ),
@@ -112,7 +108,6 @@ class ChatDetailScreen extends StatelessWidget {
     );
   }
 
-  // --- WIDGET: Custom App Bar ---
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return AppBar(
       titleSpacing: 0,
@@ -155,7 +150,6 @@ class ChatDetailScreen extends StatelessWidget {
     );
   }
 
-  // --- WIDGET: Chat Bubble ---
   Widget _buildChatBubble(ChatMessage message) {
     return Align(
       alignment: message.isMe ? Alignment.centerRight : Alignment.centerLeft,
@@ -215,7 +209,6 @@ class ChatDetailScreen extends StatelessWidget {
     );
   }
 
-  // --- WIDGET: Area Ketik Pesan ---
   Widget _buildMessageInput() {
     return Padding(
       padding: const EdgeInsets.only(left: 8, right: 8, bottom: 12, top: 4),

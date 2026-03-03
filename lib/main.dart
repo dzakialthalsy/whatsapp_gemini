@@ -143,7 +143,6 @@ class _MainScreenState extends State<MainScreen> {
   }
 }
 
-// --- Komponen Layar Chats ---
 class ChatListScreen extends StatelessWidget {
   const ChatListScreen({super.key});
 
@@ -162,7 +161,6 @@ class ChatListScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          // Meta AI / Search Bar Fiktif
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 16.0,
@@ -188,7 +186,6 @@ class ChatListScreen extends StatelessWidget {
             ),
           ),
 
-          // --- KATEGORI FILTER (All, Unread, Favorites, Groups, +) ---
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(
@@ -210,7 +207,6 @@ class ChatListScreen extends StatelessWidget {
             ),
           ),
 
-          // List Chat Fiktif
           Expanded(
             child: ListView(
               children: [
@@ -280,7 +276,6 @@ class ChatListScreen extends StatelessWidget {
     );
   }
 
-  // Widget Helper untuk Kategori Filter
   Widget _buildFilterChip(String label, {bool isSelected = false}) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -299,7 +294,6 @@ class ChatListScreen extends StatelessWidget {
     );
   }
 
-  // Widget Helper untuk membuat List Item Chat
   Widget _buildChatTile({
     required BuildContext context,
     required String name,

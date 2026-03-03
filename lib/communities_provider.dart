@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-// --- MODELS ---
 class SubGroupModel {
   final String name;
   final String lastMessage;
   final String time;
   final bool isAnnouncement;
-  final bool hasUnread; // Untuk titik hijau
+  final bool hasUnread;
 
   SubGroupModel({
     required this.name,
@@ -20,7 +19,7 @@ class SubGroupModel {
 class CommunityModel {
   final String name;
   final String? imageUrl;
-  final String? notificationText; // Teks hijau seperti "New group... added"
+  final String? notificationText;
   final List<SubGroupModel> subGroups;
 
   CommunityModel({
@@ -31,12 +30,11 @@ class CommunityModel {
   });
 }
 
-// --- PROVIDER ---
 class CommunitiesProvider extends ChangeNotifier {
   final List<CommunityModel> _communities = [
     CommunityModel(
       name: 'HALO MABA || FILKOM 2024',
-      imageUrl: 'https://picsum.photos/100?random=10', // Placeholder gambar
+      imageUrl: 'https://picsum.photos/100?random=10',
       subGroups: [
         SubGroupModel(
           name: 'Announcements',

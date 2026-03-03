@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-// --- MODELS ---
 class RecentCallModel {
   final String name;
-  final String? subName; // Untuk teks seperti "~ ihsan rmd"
+  final String? subName;
   final String time;
   final bool isMissed;
   final bool isIncoming;
@@ -21,19 +20,18 @@ class RecentCallModel {
   });
 }
 
-// --- PROVIDER ---
 class CallsProvider extends ChangeNotifier {
   final List<RecentCallModel> _recentCalls = [
     RecentCallModel(
       name: '+62 822-8467-0022',
       subName: '~ ihsan rmd',
       time: 'Yesterday, 21:38',
-      isIncoming: false, // Panggilan keluar (panah hijau ke atas)
+      isIncoming: false,
     ),
     RecentCallModel(
       name: 'Abdul',
       time: 'Yesterday, 21:27',
-      isMissed: true, // Panggilan tak terjawab (panah merah)
+      isMissed: true,
       isIncoming: true,
       isVideo: true,
       imageUrl: 'https://picsum.photos/100?random=20',
@@ -48,7 +46,7 @@ class CallsProvider extends ChangeNotifier {
     RecentCallModel(
       name: '+62 822-8467-0022 & dafa',
       time: 'Yesterday, 20:48',
-      isIncoming: true, // Panggilan masuk (panah hijau ke bawah)
+      isIncoming: true,
     ),
     RecentCallModel(
       name: '+62 896-1866-7937 (2)',

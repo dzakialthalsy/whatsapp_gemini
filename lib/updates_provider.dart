@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-// --- MODELS ---
 class StatusModel {
   final String name;
-  final String? imageUrl; // Jika null, kita pakai ikon
+  final String? imageUrl;
   final bool isViewed;
 
   StatusModel({required this.name, this.imageUrl, this.isViewed = false});
@@ -27,9 +26,7 @@ class ChannelModel {
   });
 }
 
-// --- PROVIDER ---
 class UpdatesProvider extends ChangeNotifier {
-  // Data Fiktif untuk Status
   final List<StatusModel> _statuses = [
     StatusModel(
       name: 'Budi Santoso',
@@ -48,7 +45,6 @@ class UpdatesProvider extends ChangeNotifier {
     ),
   ];
 
-  // Data Fiktif untuk Channels
   final List<ChannelModel> _channels = [
     ChannelModel(
       name: 'Info Beasiswa 2026',
@@ -60,7 +56,7 @@ class UpdatesProvider extends ChangeNotifier {
     ),
     ChannelModel(
       name: 'Kajian Koding',
-      description: '✅ Jawaban: A 👍 (Implementasi OOP...',
+      description: '✅ Jawaban: A (Implementasi OOP...',
       imageUrl: 'https://picsum.photos/100?random=4',
       time: '05:06',
       unreadCount: 4,

@@ -19,7 +19,6 @@ class CommunitiesScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // --- TILE: NEW COMMUNITY ---
             ListTile(
               contentPadding: const EdgeInsets.symmetric(
                 horizontal: 16,
@@ -72,8 +71,7 @@ class CommunitiesScreen extends StatelessWidget {
               onTap: () {},
             ),
 
-            Divider(color: Colors.grey[900], thickness: 8), // Pembatas tebal
-            // --- LIST KOMUNITAS ---
+            Divider(color: Colors.grey[900], thickness: 8),
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -83,7 +81,6 @@ class CommunitiesScreen extends StatelessWidget {
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Header Komunitas
                     ListTile(
                       leading: Container(
                         width: 48,
@@ -113,7 +110,6 @@ class CommunitiesScreen extends StatelessWidget {
                     ),
                     Divider(color: Colors.grey[900], thickness: 1, indent: 76),
 
-                    // Notifikasi khusus (seperti "New group added")
                     if (community.notificationText != null)
                       Padding(
                         padding: const EdgeInsets.only(
@@ -147,7 +143,6 @@ class CommunitiesScreen extends StatelessWidget {
                         ),
                       ),
 
-                    // List Sub-Grup (Announcements, dll)
                     ...community.subGroups.map((subGroup) {
                       return ListTile(
                         contentPadding: const EdgeInsets.only(
@@ -199,7 +194,6 @@ class CommunitiesScreen extends StatelessWidget {
                       );
                     }),
 
-                    // Tombol View All
                     ListTile(
                       contentPadding: const EdgeInsets.only(
                         left: 28,
@@ -216,10 +210,7 @@ class CommunitiesScreen extends StatelessWidget {
                       ),
                       onTap: () {},
                     ),
-                    Divider(
-                      color: Colors.grey[900],
-                      thickness: 8,
-                    ), // Pembatas antar komunitas
+                    Divider(color: Colors.grey[900], thickness: 8),
                   ],
                 );
               },

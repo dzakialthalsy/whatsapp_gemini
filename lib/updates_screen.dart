@@ -1,34 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../updates_provider.dart'; // Import file provider yang dibuat di atas
+import '../updates_provider.dart';
 
 class UpdatesScreen extends StatelessWidget {
   const UpdatesScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // Membaca data dari provider
     final updatesData = Provider.of<UpdatesProvider>(context);
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Updates'),
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.search),
-          ), // <-- Ganti di sini
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.more_vert),
-          ), // <-- Ganti di sini
+          IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert)),
         ],
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // --- SECTION: STATUS ---
             const Padding(
               padding: EdgeInsets.all(16.0),
               child: Text(
@@ -45,8 +37,7 @@ class UpdatesScreen extends StatelessWidget {
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 12),
-                itemCount:
-                    updatesData.statuses.length + 1, // +1 untuk 'Add Status'
+                itemCount: updatesData.statuses.length + 1,
                 itemBuilder: (context, index) {
                   if (index == 0) {
                     return _buildAddStatusCard();
@@ -59,7 +50,6 @@ class UpdatesScreen extends StatelessWidget {
             const SizedBox(height: 10),
             Divider(color: Colors.grey[900], thickness: 1),
 
-            // --- SECTION: CHANNELS ---
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 16.0,
@@ -100,12 +90,11 @@ class UpdatesScreen extends StatelessWidget {
                 return _buildChannelTile(updatesData.channels[index]);
               },
             ),
-            const SizedBox(height: 80), // Padding bawah agar tidak tertutup FAB
+            const SizedBox(height: 80),
           ],
         ),
       ),
 
-      // Floating Action Buttons (Pensil dan Kamera)
       floatingActionButton: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -128,7 +117,6 @@ class UpdatesScreen extends StatelessWidget {
     );
   }
 
-  // Widget: Card Tambah Status Sendiri
   Widget _buildAddStatusCard() {
     return Container(
       width: 100,
@@ -176,7 +164,6 @@ class UpdatesScreen extends StatelessWidget {
     );
   }
 
-  // Widget: Card Status Orang Lain
   Widget _buildStatusCard(StatusModel status) {
     return Container(
       width: 100,
@@ -191,7 +178,7 @@ class UpdatesScreen extends StatelessWidget {
                 colorFilter: ColorFilter.mode(
                   Colors.black.withOpacity(0.3),
                   BlendMode.darken,
-                ), // Efek gelap sikit
+                ),
               )
             : null,
       ),
@@ -252,7 +239,6 @@ class UpdatesScreen extends StatelessWidget {
     );
   }
 
-  // Widget: List Item Channel
   Widget _buildChannelTile(ChannelModel channel) {
     return ListTile(
       leading: CircleAvatar(

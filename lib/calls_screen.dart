@@ -21,7 +21,6 @@ class CallsScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // --- SECTION: TOP ACTION BUTTONS ---
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 16.0),
               child: Row(
@@ -35,8 +34,7 @@ class CallsScreen extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 8), // Sedikit jarak sebelum Recent
-            // --- SECTION: RECENT CALLS ---
+            const SizedBox(height: 8),
             const Padding(
               padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
               child: Text(
@@ -56,7 +54,7 @@ class CallsScreen extends StatelessWidget {
                 return _buildCallTile(callsData.recentCalls[index]);
               },
             ),
-            const SizedBox(height: 80), // Padding bawah untuk FAB
+            const SizedBox(height: 80),
           ],
         ),
       ),
@@ -68,7 +66,6 @@ class CallsScreen extends StatelessWidget {
     );
   }
 
-  // Widget Helper: Tombol melingkar di atas
   Widget _buildTopButton(IconData icon, String label) {
     return Column(
       children: [
@@ -90,7 +87,6 @@ class CallsScreen extends StatelessWidget {
     );
   }
 
-  // Widget Helper: List Item Riwayat Panggilan
   Widget _buildCallTile(RecentCallModel call) {
     return ListTile(
       leading: CircleAvatar(
