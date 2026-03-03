@@ -150,10 +150,13 @@ class ChatListScreen extends StatelessWidget {
         title: const Text('WhatsApp'),
         actions: [
           IconButton(
-            onIconPressed: () {},
+            onPressed: () {}, // <-- Ganti di sini
             icon: const Icon(Icons.camera_alt_outlined),
           ),
-          IconButton(onIconPressed: () {}, icon: const Icon(Icons.more_vert)),
+          IconButton(
+            onPressed: () {}, // <-- Ganti di sini
+            icon: const Icon(Icons.more_vert),
+          ),
         ],
       ),
       body: Column(

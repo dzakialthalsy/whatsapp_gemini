@@ -14,8 +14,14 @@ class UpdatesScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Updates'),
         actions: [
-          IconButton(onIconPressed: () {}, icon: const Icon(Icons.search)),
-          IconButton(onIconPressed: () {}, icon: const Icon(Icons.more_vert)),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.search),
+          ), // <-- Ganti di sini
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.more_vert),
+          ), // <-- Ganti di sini
         ],
       ),
       body: SingleChildScrollView(
