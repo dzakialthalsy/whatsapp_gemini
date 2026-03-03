@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'updates_provider.dart'; // Import file provider yang dibuat di atas
+import '../updates_provider.dart'; // Import file provider yang dibuat di atas
 
 class UpdatesScreen extends StatelessWidget {
   const UpdatesScreen({super.key});

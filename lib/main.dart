@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'updates_provider.dart';
+import 'updates_screen.dart';
 
 void main() {
-  runApp(const WhatsAppClone());
+  runApp(
+    MultiProvider(
+      providers: [ChangeNotifierProvider(create: (_) => UpdatesProvider())],
+      child: const WhatsAppClone(),
+    ),
+  );
 }
 
 class WhatsAppClone extends StatelessWidget {
