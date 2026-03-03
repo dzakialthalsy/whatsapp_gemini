@@ -143,6 +143,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 }
 
+// --- Komponen Layar Chats ---
 class ChatListScreen extends StatelessWidget {
   const ChatListScreen({super.key});
 
@@ -161,6 +162,7 @@ class ChatListScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
+          // Meta AI / Search Bar Fiktif
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 16.0,
@@ -186,12 +188,34 @@ class ChatListScreen extends StatelessWidget {
             ),
           ),
 
+          // --- KATEGORI FILTER (All, Unread, Favorites, Groups, +) ---
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16.0,
+              vertical: 8.0,
+            ),
+            child: Row(
+              children: [
+                _buildFilterChip('All', isSelected: true),
+                const SizedBox(width: 8),
+                _buildFilterChip('Unread'),
+                const SizedBox(width: 8),
+                _buildFilterChip('Favorites'),
+                const SizedBox(width: 8),
+                _buildFilterChip('Groups'),
+                const SizedBox(width: 8),
+                _buildFilterChip('+'),
+              ],
+            ),
+          ),
+
           // List Chat Fiktif
           Expanded(
             child: ListView(
               children: [
                 _buildChatTile(
-                  context: context, // Kita melempar context di sini
+                  context: context,
                   name: 'Project Alpha Team',
                   message: 'Alex: @Budi tolong cek PR nya ya',
                   time: '16:39',
@@ -199,7 +223,7 @@ class ChatListScreen extends StatelessWidget {
                   isGroup: true,
                 ),
                 _buildChatTile(
-                  context: context, // Kita melempar context di sini
+                  context: context,
                   name: 'Nick Wilsan',
                   message: 'Sticker',
                   time: '16:32',
@@ -207,7 +231,7 @@ class ChatListScreen extends StatelessWidget {
                   isMuted: true,
                 ),
                 _buildChatTile(
-                  context: context, // Kita melempar context di sini
+                  context: context,
                   name: 'John Doe',
                   message: 'Wah mantap cuyy',
                   time: '15:56',
@@ -247,6 +271,26 @@ class ChatListScreen extends StatelessWidget {
     );
   }
 
+  // Widget Helper untuk Kategori Filter
+  Widget _buildFilterChip(String label, {bool isSelected = false}) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      decoration: BoxDecoration(
+        color: isSelected ? const Color(0xFF103629) : const Color(0xFF202C33),
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Text(
+        label,
+        style: TextStyle(
+          color: isSelected ? const Color(0xFF25D366) : Colors.white54,
+          fontWeight: isSelected ? FontWeight.w500 : FontWeight.normal,
+          fontSize: 14,
+        ),
+      ),
+    );
+  }
+
+  // Widget Helper untuk membuat List Item Chat
   Widget _buildChatTile({
     required BuildContext context,
     required String name,
