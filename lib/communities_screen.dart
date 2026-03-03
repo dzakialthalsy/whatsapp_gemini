@@ -117,7 +117,7 @@ class CommunitiesScreen extends StatelessWidget {
                     if (community.notificationText != null)
                       Padding(
                         padding: const EdgeInsets.only(
-                          left: 76,
+                          left: 28,
                           right: 16,
                           bottom: 8,
                           top: 8,
@@ -151,7 +151,7 @@ class CommunitiesScreen extends StatelessWidget {
                     ...community.subGroups.map((subGroup) {
                       return ListTile(
                         contentPadding: const EdgeInsets.only(
-                          left: 76,
+                          left: 18,
                           right: 16,
                         ),
                         leading: Container(
@@ -202,7 +202,7 @@ class CommunitiesScreen extends StatelessWidget {
                     // Tombol View All
                     ListTile(
                       contentPadding: const EdgeInsets.only(
-                        left: 76,
+                        left: 28,
                         right: 16,
                       ),
                       leading: const Icon(
