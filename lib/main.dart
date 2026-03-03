@@ -6,6 +6,7 @@ import 'communities_provider.dart';
 import 'communities_screen.dart';
 import 'calls_provider.dart';
 import 'calls_screen.dart';
+import 'chat_detail_screen.dart';
 
 void main() {
   runApp(
@@ -31,11 +32,9 @@ class WhatsAppClone extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         brightness: Brightness.dark,
-        scaffoldBackgroundColor: const Color(
-          0xFF0B141B,
-        ), // Warna background gelap WA
+        scaffoldBackgroundColor: const Color(0xFF0B141B),
         colorScheme: const ColorScheme.dark(
-          primary: Color(0xFF25D366), // Hijau khas WA
+          primary: Color(0xFF25D366),
           surface: Color(0xFF0B141B),
         ),
         appBarTheme: const AppBarTheme(
@@ -64,10 +63,9 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   int _selectedIndex = 0;
 
-  // Daftar halaman untuk setiap tab
   final List<Widget> _pages = [
     const ChatListScreen(),
-    const UpdatesScreen(), // Masukkan layar yang baru kita buat
+    const UpdatesScreen(),
     const CommunitiesScreen(),
     const CallsScreen(),
   ];
@@ -92,39 +90,37 @@ class _MainScreenState extends State<MainScreen> {
         child: NavigationBar(
           height: 65,
           backgroundColor: const Color(0xFF0B141B),
-          indicatorColor: const Color(
-            0xFF103629,
-          ), // Warna highlight hijau gelap
+          indicatorColor: const Color(0xFF103629),
           selectedIndex: _selectedIndex,
           onDestinationSelected: (int index) {
             setState(() {
               _selectedIndex = index;
             });
           },
-          destinations: [
+          destinations: const [
             NavigationDestination(
               icon: Badge(
-                label: const Text('28'), // Fiktif unread badge
-                backgroundColor: const Color(0xFF25D366),
+                label: Text('28'),
+                backgroundColor: Color(0xFF25D366),
                 textColor: Colors.black,
-                child: const Icon(Icons.chat_outlined, color: Colors.white70),
+                child: Icon(Icons.chat_outlined, color: Colors.white70),
               ),
               selectedIcon: Badge(
-                label: const Text('28'),
-                backgroundColor: const Color(0xFF25D366),
+                label: Text('28'),
+                backgroundColor: Color(0xFF25D366),
                 textColor: Colors.black,
-                child: const Icon(Icons.chat, color: Colors.white),
+                child: Icon(Icons.chat, color: Colors.white),
               ),
               label: 'Chats',
             ),
-            const NavigationDestination(
+            NavigationDestination(
               icon: Icon(Icons.data_usage_outlined, color: Colors.white70),
               selectedIcon: Icon(Icons.data_usage, color: Colors.white),
               label: 'Updates',
             ),
-            const NavigationDestination(
+            NavigationDestination(
               icon: Badge(
-                smallSize: 8, // Green dot badge
+                smallSize: 8,
                 backgroundColor: Color(0xFF25D366),
                 child: Icon(Icons.groups_outlined, color: Colors.white70),
               ),
@@ -135,7 +131,7 @@ class _MainScreenState extends State<MainScreen> {
               ),
               label: 'Communities',
             ),
-            const NavigationDestination(
+            NavigationDestination(
               icon: Icon(Icons.call_outlined, color: Colors.white70),
               selectedIcon: Icon(Icons.call, color: Colors.white),
               label: 'Calls',
@@ -147,7 +143,6 @@ class _MainScreenState extends State<MainScreen> {
   }
 }
 
-// --- Komponen Layar Chats ---
 class ChatListScreen extends StatelessWidget {
   const ChatListScreen({super.key});
 
@@ -158,18 +153,14 @@ class ChatListScreen extends StatelessWidget {
         title: const Text('WhatsApp'),
         actions: [
           IconButton(
-            onPressed: () {}, // <-- Ganti di sini
+            onPressed: () {},
             icon: const Icon(Icons.camera_alt_outlined),
           ),
-          IconButton(
-            onPressed: () {}, // <-- Ganti di sini
-            icon: const Icon(Icons.more_vert),
-          ),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.more_vert)),
         ],
       ),
       body: Column(
         children: [
-          // Meta AI / Search Bar Fiktif
           Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 16.0,
@@ -200,6 +191,7 @@ class ChatListScreen extends StatelessWidget {
             child: ListView(
               children: [
                 _buildChatTile(
+                  context: context, // Kita melempar context di sini
                   name: 'Project Alpha Team',
                   message: 'Alex: @Budi tolong cek PR nya ya',
                   time: '16:39',
@@ -207,19 +199,22 @@ class ChatListScreen extends StatelessWidget {
                   isGroup: true,
                 ),
                 _buildChatTile(
-                  name: 'Siska UI/UX',
+                  context: context, // Kita melempar context di sini
+                  name: 'Nick Wilsan',
                   message: 'Sticker',
                   time: '16:32',
                   unreadCount: 5,
                   isMuted: true,
                 ),
                 _buildChatTile(
+                  context: context, // Kita melempar context di sini
                   name: 'John Doe',
                   message: 'Wah mantap cuyy',
                   time: '15:56',
-                  isRead: true, // Centang biru fiktif
+                  isRead: true,
                 ),
                 _buildChatTile(
+                  context: context,
                   name: 'Kelompok 5 Sistem',
                   message: 'You: kayaknya lebih mudah bikin yg das...',
                   time: 'Yesterday',
@@ -238,10 +233,7 @@ class ChatListScreen extends StatelessWidget {
             mini: true,
             backgroundColor: const Color(0xFF202C33),
             onPressed: () {},
-            child: const Icon(
-              Icons.lens_blur,
-              color: Colors.blueAccent,
-            ), // Meta AI icon fiktif
+            child: const Icon(Icons.lens_blur, color: Colors.blueAccent),
           ),
           const SizedBox(height: 16),
           FloatingActionButton(
@@ -255,8 +247,8 @@ class ChatListScreen extends StatelessWidget {
     );
   }
 
-  // Widget Helper untuk membuat List Item Chat
   Widget _buildChatTile({
+    required BuildContext context,
     required String name,
     required String message,
     required String time,
@@ -331,7 +323,14 @@ class ChatListScreen extends StatelessWidget {
           ),
         ],
       ),
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ChatDetailScreen(chatName: name),
+          ),
+        );
+      },
     );
   }
 }
