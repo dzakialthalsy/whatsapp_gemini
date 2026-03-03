@@ -4,6 +4,8 @@ import 'updates_provider.dart';
 import 'updates_screen.dart';
 import 'communities_provider.dart';
 import 'communities_screen.dart';
+import 'calls_provider.dart';
+import 'calls_screen.dart';
 
 void main() {
   runApp(
@@ -11,6 +13,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (_) => UpdatesProvider()),
         ChangeNotifierProvider(create: (_) => CommunitiesProvider()),
+        ChangeNotifierProvider(create: (_) => CallsProvider()),
       ],
       child: const WhatsAppClone(),
     ),
@@ -66,9 +69,7 @@ class _MainScreenState extends State<MainScreen> {
     const ChatListScreen(),
     const UpdatesScreen(), // Masukkan layar yang baru kita buat
     const CommunitiesScreen(),
-    const Center(
-      child: Text('Calls Screen', style: TextStyle(color: Colors.white)),
-    ),
+    const CallsScreen(),
   ];
 
   @override
